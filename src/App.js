@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/styles'
 
-import './App.css'
 import { ltyTheme } from './theme'
 import { IndexPage } from './pages'
 import { InfoPage } from './pages/info'
