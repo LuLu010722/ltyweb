@@ -5,6 +5,7 @@ import './App.css'
 import { ltyTheme } from './theme'
 import { IndexPage } from './pages'
 import { InfoPage } from './pages/info'
+import { FeedbackPage } from './pages/feedback'
 
 export const App = () => {
   return (
@@ -16,9 +17,9 @@ export const App = () => {
           </Route>
           <Route path="/info">
             <InfoPage />
-          </Route>{' '}
+          </Route>
           <Route path="/feedback">
-            <InfoPage />
+            <FeedbackPage />
           </Route>
         </Switch>
       </Router>
