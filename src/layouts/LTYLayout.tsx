@@ -11,8 +11,9 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Avatar,
 } from '@material-ui/core'
-import { InfoOutlined, InsertEmoticonOutlined } from '@material-ui/icons'
+import { FeedbackOutlined, InfoOutlined, InsertEmoticonOutlined } from '@material-ui/icons'
 
 const drawerWidth = 200
 
@@ -44,6 +45,12 @@ const useLTYLayoutStyles = makeStyles((theme) => {
     itemSelected: {
       backgroundColor: '#ddd',
     },
+    avatar: {
+      marginLeft: theme.spacing(2),
+    },
+    listIcon: {
+      marginRight: theme.spacing(-2),
+    },
   }
 })
 
@@ -54,14 +61,19 @@ export const LTYLayout: React.FC = ({ children }) => {
 
   const menuList = [
     {
-      text: 'index',
+      text: '个人主页',
       icon: <InsertEmoticonOutlined />,
       path: '/',
     },
     {
-      text: 'info',
+      text: '信息',
       icon: <InfoOutlined />,
       path: '/info',
+    },
+    {
+      text: "反馈",
+      icon: <FeedbackOutlined />,
+      path: '/feedback'
     },
   ]
 
@@ -69,8 +81,11 @@ export const LTYLayout: React.FC = ({ children }) => {
     <div className={classes.root}>
       <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Typography className={classes.topBarText}>Hello world</Typography>
-          <Typography>LTY</Typography>
+          <Typography className={classes.topBarText}>
+            欢迎来到我的个人主页
+          </Typography>
+          <Typography>卢天宇</Typography>
+          <Avatar src="avatar.png" className={classes.avatar} />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -80,24 +95,28 @@ export const LTYLayout: React.FC = ({ children }) => {
         className={classes.drawer}
       >
         <div>
-          <Typography variant="h5">Hello!</Typography>
+          <Typography variant="h6" align="center">
+            切换页面
+          </Typography>
         </div>
         <List>
           {menuList.map((item) => {
             return (
               <ListItem
-                className={`${
-                  location.pathname == item.path
+                className={
+                  location.pathname === item.path
                     ? classes.itemSelected
                     : undefined
-                } ${classes.item}`}
+                }
                 button
                 key={item.text}
                 onClick={() => {
                   return history.push(item.path)
                 }}
               >
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon className={classes.listIcon}>
+                  {item.icon}
+                </ListItemIcon>
                 <ListItemText>{item.text}</ListItemText>
               </ListItem>
             )

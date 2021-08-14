@@ -9,16 +9,19 @@ import { InfoPage } from './pages/info'
 export const App = () => {
   return (
     <ThemeProvider theme={ltyTheme}>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <IndexPage />
-            </Route>
-            <Route path="/info">
-              <InfoPage />
-            </Route>
-          </Switch>
-        </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <IndexPage />
+          </Route>
+          <Route path="/info">
+            <InfoPage />
+          </Route>{' '}
+          <Route path="/feedback">
+            <InfoPage />
+          </Route>
+        </Switch>
+      </Router>
     </ThemeProvider>
   )
 }

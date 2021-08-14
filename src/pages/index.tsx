@@ -1,10 +1,10 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { LTYLayout } from '../layouts/LTYLayout'
 
 export const IndexPage = () => {
   return (
     <LTYLayout>
-      <Typography>Hello, this is my personal page!</Typography>
+      <Typography>你好，这是我的个人主页</Typography>
     </LTYLayout>
   )
 }
