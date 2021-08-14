@@ -3,22 +3,22 @@ import { ThemeProvider } from '@material-ui/styles'
 
 import './App.css'
 import { ltyTheme } from './theme'
+import { IndexPage } from './pages'
+import { InfoPage } from './pages/info'
 
-function App() {
+export const App = () => {
   return (
     <ThemeProvider theme={ltyTheme}>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <div>hello world</div>
-          </Route>
-          <Route path="/info">
-            <div>This is all my info</div>
-          </Route>
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <IndexPage />
+            </Route>
+            <Route path="/info">
+              <InfoPage />
+            </Route>
+          </Switch>
+        </Router>
     </ThemeProvider>
   )
 }
-
-export default App
