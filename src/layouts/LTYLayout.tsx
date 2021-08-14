@@ -13,7 +13,11 @@ import {
   ListItemText,
   Avatar,
 } from '@material-ui/core'
-import { FeedbackOutlined, InfoOutlined, InsertEmoticonOutlined } from '@material-ui/icons'
+import {
+  FeedbackOutlined,
+  InfoOutlined,
+  InsertEmoticonOutlined,
+} from '@material-ui/icons'
 
 const drawerWidth = 200
 
@@ -71,9 +75,9 @@ export const LTYLayout: React.FC = ({ children }) => {
       path: '/info',
     },
     {
-      text: "反馈",
+      text: '反馈',
       icon: <FeedbackOutlined />,
-      path: '/feedback'
+      path: '/feedback',
     },
   ]
 

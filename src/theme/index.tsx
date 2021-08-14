@@ -1,5 +1,3 @@
-import { createTheme } from "@material-ui/core";
+import { createTheme } from '@material-ui/core'
 
-export const ltyTheme = createTheme({
-  
-})
+export const ltyTheme = createTheme({})
