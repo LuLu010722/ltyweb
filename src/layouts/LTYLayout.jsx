@@ -44,7 +44,6 @@ const useLTYLayoutStyles = makeStyles((theme) => {
       display: 'flex',
     },
     page: {
-      backgroundColor: '#ddd',
       width: '100%',
       padding: theme.spacing(2),
     },
