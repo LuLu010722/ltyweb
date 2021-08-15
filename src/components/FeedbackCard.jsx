@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Card,
   CardContent,
   CardHeader,
@@ -6,14 +7,12 @@ import {
   Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import { Delete, DeleteOutlined } from '@material-ui/icons'
-import { Container } from 'postcss'
-import { useHistory } from 'react-router'
+import { DeleteOutlined } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      marginBottom: 20,
+      backgroundColor: "#eee"
     },
   }
 })
@@ -23,8 +22,9 @@ export const FeedbackCard = ({ feedback, handleDelete }) => {
 
   return (
     <div>
-      <Card className={classes.root}>
+      <Card className={classes.root} elevation={3}>
         <CardHeader
+        avatar={<Avatar >{feedback.title[0]}</Avatar>}
           title={feedback.title}
           action={
             <IconButton onClick={() => handleDelete(feedback.id)}>

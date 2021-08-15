@@ -1,43 +1,23 @@
-import { Button, makeStyles, TextField, Typography } from '@material-ui/core'
-import { KeyboardArrowRight } from '@material-ui/icons'
+import { Grid } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router'
 import { LTYLayout } from '../layouts/LTYLayout'
 import { FeedbackCard } from '../components/FeedbackCard'
 
-const textList = [
-  {
-    text: '标题',
-  },
-  {
-    text: '描述',
-  },
-  {
-    text: '联系方式',
-  },
-]
-const useTextFieldStyles = makeStyles((theme) => {
-  return {
-    text: {
-      marginBottom: theme.spacing(2),
-      display: 'block',
-    },
-  }
-})
+import { AddFeedbackInput } from '../components/AddFeedbackInput'
 
 export const FeedbackPage = () => {
-  const classes = useTextFieldStyles()
-  const [title, setTitle] = useState('')
-  const [details, setDetails] = useState('')
-  const [contact, setContact] = useState('')
   const [feedbacks, setFeedbacks] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
-  const setContent = (id, value) => {
-    if (id === 0) {
-      setTitle(value)
-    } else if (id === 1) {
-      setDetails(value)
-    } else setContact(value)
+  const refresh = async () => {
+    setLoaded(false)
+    await fetch('http://localhost:8000/feedbacks')
+      .then((res) => res.json())
+      .then((data) => {
+        setFeedbacks(data)
+      })
+      .catch((reason) => alert(reason))
+    setLoaded(true)
   }
 
   const handleDelete = (id) => {
@@ -45,70 +25,27 @@ export const FeedbackPage = () => {
       fetch('http://localhost:8000/feedbacks/' + id, {
         method: 'DELETE',
       }).then(() => {
-        setFeedbacks(
-          feedbacks.filter((feedback) => {
-            return feedback.id !== id
-          })
-        )
+        refresh()
       })
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const content = { title, details, contact }
-    await fetch('http://localhost:8000/feedbacks', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(content),
-    }).then(() => {
-      alert('提交成功，谢谢您的反馈！')
-      setFeedbacks([...feedbacks, content])
-    })
-  }
-
   useEffect(() => {
-    fetch('http://localhost:8000/feedbacks')
-      .then((res) => res.json())
-      .then((data) => {
-        setFeedbacks(data)
-      })
+    refresh()
   }, [])
 
   return (
     <LTYLayout>
-      {feedbacks.map((feedback) => {
-        return <FeedbackCard feedback={feedback} handleDelete={handleDelete} />
-      })}
-      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        {textList.map((text, index) => {
+      <Grid container spacing={3}>
+        {feedbacks.map((feedback) => {
           return (
-            <TextField
-              onChange={(e) => {
-                const value = e.target.value
-                setContent(index, value)
-              }}
-              className={classes.text}
-              variant="outlined"
-              autoFocus={index === 0}
-              fullWidth
-              required
-              label={text.text}
-            />
+            <Grid item key={feedback.id} xs={12} sm={6} md={3}>
+              <FeedbackCard feedback={feedback} handleDelete={handleDelete} />
+            </Grid>
           )
         })}
-        <Button
-          endIcon={<KeyboardArrowRight />}
-          type="submit"
-          variant="contained"
-          color="primary"
-        >
-          提交
-        </Button>
-      </form>
+      </Grid>
+      {loaded && <AddFeedbackInput refresh={refresh} />}
     </LTYLayout>
   )
 }

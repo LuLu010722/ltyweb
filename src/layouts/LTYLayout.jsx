@@ -13,30 +13,10 @@ import {
   ListItemText,
   Avatar,
 } from '@material-ui/core'
-import {
-  FeedbackOutlined,
-  InfoOutlined,
-  InsertEmoticonOutlined,
-} from '@material-ui/icons'
+
+import { menuList } from '../data/list'
 
 const drawerWidth = 200
-const menuList = [
-  {
-    text: '个人主页',
-    icon: <InsertEmoticonOutlined />,
-    path: '/',
-  },
-  {
-    text: '信息',
-    icon: <InfoOutlined />,
-    path: '/info',
-  },
-  {
-    text: '反馈',
-    icon: <FeedbackOutlined />,
-    path: '/feedback',
-  },
-]
 
 const useLTYLayoutStyles = makeStyles((theme) => {
   return {
