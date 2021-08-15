@@ -20,6 +20,23 @@ import {
 } from '@material-ui/icons'
 
 const drawerWidth = 200
+const menuList = [
+  {
+    text: '个人主页',
+    icon: <InsertEmoticonOutlined />,
+    path: '/',
+  },
+  {
+    text: '信息',
+    icon: <InfoOutlined />,
+    path: '/info',
+  },
+  {
+    text: '反馈',
+    icon: <FeedbackOutlined />,
+    path: '/feedback',
+  },
+]
 
 const useLTYLayoutStyles = makeStyles((theme) => {
   return {
@@ -58,28 +75,10 @@ const useLTYLayoutStyles = makeStyles((theme) => {
   }
 })
 
-export const LTYLayout: React.FC = ({ children }) => {
+export const LTYLayout = ({ children }) => {
   const classes = useLTYLayoutStyles()
   const history = useHistory()
   const location = useLocation()
-
-  const menuList = [
-    {
-      text: '个人主页',
-      icon: <InsertEmoticonOutlined />,
-      path: '/',
-    },
-    {
-      text: '信息',
-      icon: <InfoOutlined />,
-      path: '/info',
-    },
-    {
-      text: '反馈',
-      icon: <FeedbackOutlined />,
-      path: '/feedback',
-    },
-  ]
 
   return (
     <div className={classes.root}>
