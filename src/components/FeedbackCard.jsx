@@ -12,7 +12,7 @@ import { DeleteOutlined } from '@material-ui/icons'
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      backgroundColor: "#eee"
+      backgroundColor: '#eee',
     },
   }
 })
@@ -24,7 +24,7 @@ export const FeedbackCard = ({ feedback, handleDelete }) => {
     <div>
       <Card className={classes.root} elevation={3}>
         <CardHeader
-        avatar={<Avatar >{feedback.title[0]}</Avatar>}
+          avatar={<Avatar>{feedback.title[0]}</Avatar>}
           title={feedback.title}
           action={
             <IconButton onClick={() => handleDelete(feedback.id)}>

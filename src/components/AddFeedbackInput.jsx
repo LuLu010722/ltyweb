@@ -70,6 +70,7 @@ export const AddFeedbackInput = ({ refresh }) => {
               }}
               className={classes.text}
               variant="outlined"
+              key={text.text}
               fullWidth
               required
               error={

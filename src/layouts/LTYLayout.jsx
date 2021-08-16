@@ -1,114 +1,59 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
 
 import {
   AppBar,
   Toolbar,
-  Drawer,
   Typography,
   makeStyles,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Avatar,
+  Box,
 } from '@material-ui/core'
 
-import { menuList } from '../data/list'
+import { FlexBox } from '../containers/FlexBox'
+import { SideBar } from '../containers/SideBar'
 
-const drawerWidth = 200
-
-const useLTYLayoutStyles = makeStyles((theme) => {
-  return {
-    root: {
-      display: 'flex',
-    },
-    page: {
-      width: '100%',
-      padding: theme.spacing(2),
-    },
-    drawer: {
-      width: drawerWidth,
-    },
-    appBar: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
-    toolbar: theme.mixins.toolbar,
-    item: {
-      '&: hover': {
-        backgroundColor: '#ddd',
-      },
-    },
-    topBarText: {
-      flexGrow: 1,
-    },
-    itemSelected: {
-      backgroundColor: '#ddd',
-    },
-    avatar: {
-      marginLeft: theme.spacing(2),
-    },
-    listIcon: {
-      marginRight: theme.spacing(-2),
-    },
-  }
-})
+const useLTYLayoutStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  topBarText: {
+    flexGrow: 1,
+    marginLeft: theme.spacing(3),
+  },
+  page: {
+    width: '100%',
+    padding: theme.spacing(2),
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  itemSelected: {
+    backgroundColor: '#ddd',
+  },
+  avatar: {
+    marginLeft: theme.spacing(2),
+  },
+}))
 
 export const LTYLayout = ({ children }) => {
   const classes = useLTYLayoutStyles()
-  const history = useHistory()
-  const location = useLocation()
 
   return (
-    <div className={classes.root}>
-      <AppBar className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Typography className={classes.topBarText}>
+    <FlexBox>
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography className={classes.topBarText} gutterBottom>
             欢迎来到我的个人主页
           </Typography>
           <Typography>卢天宇</Typography>
           <Avatar src="avatar.png" className={classes.avatar} />
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="left"
-        variant="permanent"
-        classes={{ paper: classes.drawer }}
-        className={classes.drawer}
-      >
-        <div>
-          <Typography variant="h6" align="center">
-            切换页面
-          </Typography>
-        </div>
-        <List>
-          {menuList.map((item) => {
-            return (
-              <ListItem
-                className={
-                  location.pathname === item.path
-                    ? classes.itemSelected
-                    : undefined
-                }
-                button
-                key={item.text}
-                onClick={() => {
-                  return history.push(item.path)
-                }}
-              >
-                <ListItemIcon className={classes.listIcon}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText>{item.text}</ListItemText>
-              </ListItem>
-            )
-          })}
-        </List>
-      </Drawer>
-      <div className={classes.page}>
-        <div className={classes.toolbar}></div>
+      <SideBar />
+      <Box className={classes.page}>
+        <Toolbar />
         {children}
-      </div>
-    </div>
+      </Box>
+    </FlexBox>
   )
 }
