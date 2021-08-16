@@ -1,4 +1,4 @@
-import { TextField, Button, makeStyles, Typography } from '@material-ui/core'
+import { TextField, Button, makeStyles, Typography, Box } from '@material-ui/core'
 import { KeyboardArrowRight } from '@material-ui/icons'
 import { useState } from 'react'
 
@@ -6,9 +6,6 @@ import { textList } from '../data/list'
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
-      marginTop: 30,
-    },
     text: {
       marginBottom: theme.spacing(2),
       display: 'block',
@@ -58,7 +55,7 @@ export const AddFeedbackInput = ({ refresh }) => {
   }
 
   return (
-    <div className={classes.root}>
+    <Box>
       <Typography gutterBottom>反馈</Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         {textList.map((text, index) => {
@@ -93,6 +90,6 @@ export const AddFeedbackInput = ({ refresh }) => {
           提交
         </Button>
       </form>
-    </div>
+    </Box>
   )
 }

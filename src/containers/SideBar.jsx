@@ -1,6 +1,7 @@
 import { useLocation, useHistory } from 'react-router'
 
 import {
+  Box,
   Drawer,
   Toolbar,
   List,
@@ -16,18 +17,31 @@ const drawerWidth = 200
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
+    width: (expand) => {
+      return expand ? drawerWidth : 55
+    },
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.standard,
+    }),
+  },
+  drawerPaper: {
     width: drawerWidth,
   },
   drawerContainer: {
-    overflow: 'auto',
+    overflow: 'hidden',
   },
   listIcon: {
+    width: 55,
     color: 'violet',
+  },
+  listText: {
+    whiteSpace: 'nowrap',
   },
 }))
 
-export const SideBar = () => {
-  const classes = useStyles()
+export const SideBar = ({ expand }) => {
+  const classes = useStyles(expand)
   const history = useHistory()
   const location = useLocation()
 
@@ -55,7 +69,9 @@ export const SideBar = () => {
                 <ListItemIcon className={classes.listIcon}>
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText>{item.text}</ListItemText>
+                <ListItemText className={classes.listText}>
+                  {item.text}
+                </ListItemText>
               </ListItem>
             )
           })}
