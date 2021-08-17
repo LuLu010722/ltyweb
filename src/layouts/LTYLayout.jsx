@@ -14,7 +14,6 @@ import { FlexBox } from '../components/FlexBox'
 import { SideBar } from '../containers/SideBar'
 import { useState } from 'react'
 import { FormatListBulletedRounded } from '@material-ui/icons'
-import { useMemo } from 'react'
 
 const useLTYLayoutStyles = makeStyles((theme) => ({
   root: {
@@ -46,10 +45,6 @@ export const LTYLayout = ({ children }) => {
   const classes = useLTYLayoutStyles()
   const [sideBarExpand, setSideBarExpand] = useState(true)
 
-  const memoExpand = useMemo(() => {
-    return sideBarExpand
-  })
-
   const handleAppBarIconClick = () => {
     setSideBarExpand(!sideBarExpand)
   }
@@ -71,7 +66,7 @@ export const LTYLayout = ({ children }) => {
           <Avatar src="avatar.png" className={classes.avatar} />
         </Toolbar>
       </AppBar>
-      <SideBar expand={memoExpand} />
+      <SideBar expand={sideBarExpand} />
       <Box className={classes.page}>
         <Toolbar />
         {children}

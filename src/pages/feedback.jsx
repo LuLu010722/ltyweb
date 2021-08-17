@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
-import { LTYLayout } from '../layouts/LTYLayout'
 import { FeedbackCard } from '../components/FeedbackCard'
 
 import { AddFeedbackInput } from '../components/AddFeedbackInput'
@@ -36,7 +35,7 @@ export const FeedbackPage = () => {
   }, [])
 
   return (
-    <LTYLayout>
+    <>
       {loaded && <AddFeedbackInput refresh={refresh} />}
       <Divider />
       {!!feedbacks.length && <Typography gutterBottom>游客反馈列表</Typography>}
@@ -49,6 +48,6 @@ export const FeedbackPage = () => {
           )
         })}
       </Grid>
-    </LTYLayout>
+    </>
   )
 }

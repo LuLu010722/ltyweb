@@ -1,7 +1,6 @@
 import { useLocation, useHistory } from 'react-router'
 
 import {
-  Box,
   Drawer,
   Toolbar,
   List,

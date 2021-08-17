@@ -5,22 +5,25 @@ import { ltyTheme } from './theme'
 import { IndexPage } from './pages'
 import { InfoPage } from './pages/info'
 import { FeedbackPage } from './pages/feedback'
+import { LTYLayout } from './layouts/LTYLayout'
 
 export const App = () => {
   return (
     <ThemeProvider theme={ltyTheme}>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <IndexPage />
-          </Route>
-          <Route path="/info">
-            <InfoPage />
-          </Route>
-          <Route path="/feedback">
-            <FeedbackPage />
-          </Route>
-        </Switch>
+        <LTYLayout>
+          <Switch>
+            <Route exact path="/">
+              <IndexPage />
+            </Route>
+            <Route path="/info">
+              <InfoPage />
+            </Route>
+            <Route path="/feedback">
+              <FeedbackPage />
+            </Route>
+          </Switch>
+        </LTYLayout>
       </Router>
     </ThemeProvider>
   )
