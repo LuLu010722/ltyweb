@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import {
   TextField,
   Button,
@@ -6,7 +8,6 @@ import {
   Box,
 } from '@material-ui/core'
 import { KeyboardArrowRight } from '@material-ui/icons'
-import { useState } from 'react'
 
 import { textList } from '../data/list'
 
@@ -47,7 +48,7 @@ export const AddFeedbackInput = ({ refresh }) => {
       return
     }
 
-    const content = { title, details, contact }
+    const content = { title, details, contact, status: 'bug' }
     fetch('http://localhost:8000/feedbacks', {
       method: 'POST',
       headers: {
@@ -62,7 +63,7 @@ export const AddFeedbackInput = ({ refresh }) => {
 
   return (
     <Box>
-      <Typography gutterBottom>反馈</Typography>
+      <Typography gutterBottom>报个小bug</Typography>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         {textList.map((text, index) => {
           return (
