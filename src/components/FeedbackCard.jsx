@@ -10,7 +10,6 @@ import {
   Typography,
   makeStyles,
   Collapse,
-  duration,
 } from '@material-ui/core'
 import {
   CheckCircleOutlineRounded,
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => {
       },
     },
     avatar: {
-      backgroundColor: (feedback) => {
+      backgroundColor: ({ feedback }) => {
         return feedback.status === 'bug'
           ? theme.palette.error.dark
           : theme.palette.info.dark
@@ -42,25 +41,20 @@ const useStyles = makeStyles((theme) => {
     solutionAvatar: {
       backgroundColor: theme.palette.success.main,
     },
-    expandIconButton: {
-      transform: 'rotate(0deg)',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.standard,
-      }),
-    },
-    expandIconButtonOpen: {
-      transform: 'rotate(180deg)',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.standard,
-      }),
+    expandIconButton: ({ expand }) => {
+      return {
+        transform: `rotate(${expand ? 180 : 0}deg)`,
+        transition: theme.transitions.create('transform', {
+          duration: theme.transitions.duration.standard,
+        }),
+      }
     },
   }
 })
 
 export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
   const [expand, setExpand] = useState(false)
-  const ex = expand
-  const classes = useStyles(feedback)
+  const classes = useStyles({ feedback, expand })
 
   const handleExpand = () => {
     setExpand(!expand)
@@ -97,13 +91,7 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
               action={
                 <>
                   <IconButton onClick={handleExpand}>
-                    <ExpandMoreRounded
-                      className={
-                        expand
-                          ? classes.expandIconButtonOpen
-                          : classes.expandIconButton
-                      }
-                    />
+                    <ExpandMoreRounded className={classes.expandIconButton} />
                   </IconButton>
                   <IconButton onClick={() => handleDelete(feedback.id, 2)}>
                     <DeleteOutlined />
