@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from 'react'
 
 import {
   Avatar,
@@ -10,7 +9,8 @@ import {
   Typography,
   makeStyles,
   Collapse,
-} from "@material-ui/core";
+  Box,
+} from '@material-ui/core'
 import {
   CheckCircleOutlineRounded,
   DeleteOutlined,
@@ -19,43 +19,39 @@ import {
 
 import { Divider } from "./Divider";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: ({ feedback }) =>
-      feedback.status === "bug"
-        ? theme.palette.error.light
-        : theme.palette.info.light,
-  },
-  avatar: {
-    backgroundColor: ({ feedback }) =>
-      feedback.status === "bug"
-        ? theme.palette.error.dark
-        : theme.palette.info.dark,
-  },
-  deleteSolutionButton: {
-    marginLeft: "auto",
-  },
-  solutionAvatar: {
-    backgroundColor: theme.palette.success.main,
-  },
-  expandIconButton: ({ expand }) => ({
-    transform: `rotate(${expand ? 180 : 0}deg)`,
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.standard,
+const useStyles = makeStyles((theme) => {
+  return {
+    root: {
+      backgroundColor: ({ status }) =>
+        status === 'bug' ? theme.palette.error.light : theme.palette.info.light,
+    },
+    avatar: {
+      backgroundColor: ({ status }) =>
+        status === 'bug' ? theme.palette.error.dark : theme.palette.info.dark,
+    },
+    solutionAvatar: {
+      backgroundColor: theme.palette.success.main,
+    },
+    expandIconButton: ({ expand }) => ({
+      transform: `rotate(${expand ? 180 : 0}deg)`,
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.standard,
+      }),
     }),
-  }),
-}));
+  }
+})
 
 export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
-  const [expand, setExpand] = useState(false);
-  const classes = useStyles({ feedback, expand });
+  const [expand, setExpand] = useState(false)
+  const status = feedback.status
+  const classes = useStyles({ status, expand })
 
   const handleExpand = () => {
     setExpand(!expand);
   };
 
   return (
-    <div>
+    <Box>
       <Card className={classes.root} elevation={3}>
         <CardHeader
           avatar={<Avatar className={classes.avatar}>#{feedback.id}</Avatar>}
@@ -99,6 +95,6 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
           </>
         )}
       </Card>
-    </div>
-  );
-};
+    </Box>
+  )
+}
