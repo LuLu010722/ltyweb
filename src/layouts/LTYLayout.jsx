@@ -10,7 +10,6 @@ import {
   IconButton,
 } from '@material-ui/core'
 
-import { FlexBox } from '../components/FlexBox'
 import { SideBar } from '../containers/SideBar'
 import { useState } from 'react'
 import { FormatListBulletedRounded } from '@material-ui/icons'
@@ -50,7 +49,7 @@ export const LTYLayout = ({ children }) => {
   }
 
   return (
-    <FlexBox>
+    <Box className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -71,6 +70,6 @@ export const LTYLayout = ({ children }) => {
         <Toolbar />
         {children}
       </Box>
-    </FlexBox>
+    </Box>
   )
 }

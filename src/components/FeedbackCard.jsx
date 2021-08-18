@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 
 import {
   Avatar,
@@ -10,63 +10,55 @@ import {
   Typography,
   makeStyles,
   Collapse,
-} from '@material-ui/core'
+} from "@material-ui/core";
 import {
   CheckCircleOutlineRounded,
   DeleteOutlined,
   ExpandMoreRounded,
-} from '@material-ui/icons'
+} from "@material-ui/icons";
 
-import { Divider } from './Divider'
+import { Divider } from "./Divider";
 
-const useStyles = makeStyles((theme) => {
-  return {
-    root: {
-      backgroundColor: (feedback) => {
-        return feedback.status === 'bug'
-          ? theme.palette.error.light
-          : theme.palette.info.light
-      },
-    },
-    avatar: {
-      backgroundColor: ({ feedback }) => {
-        return feedback.status === 'bug'
-          ? theme.palette.error.dark
-          : theme.palette.info.dark
-      },
-    },
-    deleteSolutionButton: {
-      marginLeft: 'auto',
-    },
-    solutionAvatar: {
-      backgroundColor: theme.palette.success.main,
-    },
-    expandIconButton: ({ expand }) => {
-      return {
-        transform: `rotate(${expand ? 180 : 0}deg)`,
-        transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.standard,
-        }),
-      }
-    },
-  }
-})
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: ({ feedback }) =>
+      feedback.status === "bug"
+        ? theme.palette.error.light
+        : theme.palette.info.light,
+  },
+  avatar: {
+    backgroundColor: ({ feedback }) =>
+      feedback.status === "bug"
+        ? theme.palette.error.dark
+        : theme.palette.info.dark,
+  },
+  deleteSolutionButton: {
+    marginLeft: "auto",
+  },
+  solutionAvatar: {
+    backgroundColor: theme.palette.success.main,
+  },
+  expandIconButton: ({ expand }) => ({
+    transform: `rotate(${expand ? 180 : 0}deg)`,
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.standard,
+    }),
+  }),
+}));
 
 export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
-  const [expand, setExpand] = useState(false)
-  const classes = useStyles({ feedback, expand })
+  const [expand, setExpand] = useState(false);
+  const classes = useStyles({ feedback, expand });
 
   const handleExpand = () => {
-    setExpand(!expand)
-  }
+    setExpand(!expand);
+  };
 
   return (
     <div>
       <Card className={classes.root} elevation={3}>
         <CardHeader
-          avatar={
-            <Avatar className={classes.avatar}>{feedback.title[0]}</Avatar>
-          }
+          avatar={<Avatar className={classes.avatar}>#{feedback.id}</Avatar>}
           title={feedback.title}
           action={
             <>
@@ -108,5 +100,5 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
         )}
       </Card>
     </div>
-  )
-}
+  );
+};
