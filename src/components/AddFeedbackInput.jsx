@@ -6,23 +6,25 @@ import {
   makeStyles,
   Typography,
   Box,
-  Select,
   MenuItem,
-  List,
-  Menu,
-  MenuList,
-  FormControl,
-  InputLabel,
 } from '@material-ui/core'
 import { KeyboardArrowRight } from '@material-ui/icons'
 
-import { menuList, statusList, textList } from '../data/list'
+import { statusList, textList } from '../data/list'
 
 const useStyles = makeStyles((theme) => {
   return {
-    text: {
+    textField: {
+      display: 'flex',
       marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(2),
+      width: `calc(400px + ${theme.spacing(2)}px)`,
+    },
+    textFieldInBox: {
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(2),
       marginBottom: theme.spacing(1),
+      width: 200,
     },
   }
 })
@@ -33,19 +35,9 @@ export const AddFeedbackInput = ({ refresh }) => {
   const [title, setTitle] = useState('')
   const [status, setStatus] = useState('')
   const [details, setDetails] = useState('')
-  const [contact, setContact] = useState('')
   const [errorTitle, setErrorTitle] = useState(false)
   const [errorStatus, setErrorStatus] = useState(false)
   const [errorDetails, setErrorDetails] = useState(false)
-  const [errorContact, setErrorContact] = useState(false)
-
-  const setContent = (id, value) => {
-    if (id === 0) {
-      setTitle(value)
-    } else if (id === 1) {
-      setDetails(value)
-    } else setContact(value)
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -53,17 +45,11 @@ export const AddFeedbackInput = ({ refresh }) => {
     setErrorTitle(title.trim() === '')
     setErrorStatus(status.trim() === '')
     setErrorDetails(details.trim() === '')
-    setErrorContact(contact.trim() === '')
-    if (
-      title.trim() === '' ||
-      status.trim() === '' ||
-      details.trim() === '' ||
-      contact.trim() === ''
-    ) {
+    if (title.trim() === '' || status.trim() === '' || details.trim() === '') {
       return
     }
 
-    const content = { title, details, contact, status }
+    const content = { title, status, details }
     fetch('http://localhost:8000/feedbacks', {
       method: 'POST',
       headers: {
@@ -84,9 +70,8 @@ export const AddFeedbackInput = ({ refresh }) => {
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <Box display="flex">
           <TextField
-            className={classes.text}
+            className={classes.textFieldInBox}
             variant="outlined"
-            fullWidth
             required
             error={errorTitle}
             key={textList[0].text}
@@ -95,11 +80,9 @@ export const AddFeedbackInput = ({ refresh }) => {
               setTitle(e.target.value)
             }}
           />
-          <Box width="10%" />
           <TextField
-            className={classes.text}
+            className={classes.textFieldInBox}
             variant="outlined"
-            fullWidth
             required
             select
             value={status}
@@ -118,12 +101,10 @@ export const AddFeedbackInput = ({ refresh }) => {
               )
             })}
           </TextField>
-          <Box width="100%" />
         </Box>
         <TextField
-          className={classes.text}
+          className={classes.textField}
           variant="outlined"
-          fullWidth
           required
           error={errorDetails}
           key={textList[2].text}
@@ -131,21 +112,10 @@ export const AddFeedbackInput = ({ refresh }) => {
           onChange={(e) => {
             setDetails(e.target.value)
           }}
-        />
-        <TextField
-          className={classes.text}
-          variant="outlined"
-          fullWidth
-          required
-          error={errorContact}
-          key={textList[3].text}
-          label={textList[3].text}
-          onChange={(e) => {
-            setContact(e.target.value)
-          }}
+          multiline
+          minRows={3}
         />
         <Button
-          className={classes.text}
           endIcon={<KeyboardArrowRight />}
           type="submit"
           variant="contained"

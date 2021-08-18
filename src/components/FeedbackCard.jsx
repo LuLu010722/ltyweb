@@ -63,6 +63,7 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
         <CardHeader
           avatar={<Avatar className={classes.avatar}>#{feedback.id}</Avatar>}
           title={feedback.title}
+          subheader={feedback.status.toUpperCase() + '#' + feedback.id}
           action={
             <>
               <IconButton
@@ -71,7 +72,10 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
               >
                 <CheckCircleOutlineRounded />
               </IconButton>
-              <IconButton onClick={() => handleDelete(feedback.id, 1)}>
+              <IconButton
+                disabled={feedback.status === 'info'}
+                onClick={() => handleDelete(feedback.id, 1)}
+              >
                 <DeleteOutlined />
               </IconButton>
             </>

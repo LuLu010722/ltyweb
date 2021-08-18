@@ -6,11 +6,11 @@
       "contact": "LuLu",
       "status": "info",
       "id": 1,
-      "solution": "将LTYLayout作为所有Route的父组件，则不会在路由时重载侧边栏"
+      "solution": "将LTYLayout作为所有Route的父组件，则不会在路由时重载侧边栏。"
     },
     {
       "title": "TODO#2",
-      "details": "制作todo样式，设置已解决状态下不可重复解决，或支持多解决，添加状态chip",
+      "details": "制作todo样式，设置已解决状态下不可重复解决，或支持多解决。",
       "contact": "LuLu",
       "status": "info",
       "id": 2,
@@ -20,8 +20,21 @@
       "title": "BUG#3",
       "details": "状态下拉条对不齐",
       "contact": "lulu",
-      "status": "bug",
-      "id": 3
+      "status": "info",
+      "id": 3,
+      "solution": "百分数宽度可能是小数，这与生成的select子元素的宽度不统一。将其手动设置为200固定像素。"
+    },
+    {
+      "title": "头像下拉框",
+      "status": "todo",
+      "details": "添加右上角头像的下拉框",
+      "id": 4
+    },
+    {
+      "title": "设置主页样式",
+      "status": "todo",
+      "details": "查阅流行主页布局，设置样式",
+      "id": 5
     }
   ]
 }

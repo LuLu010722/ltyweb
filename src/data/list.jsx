@@ -6,7 +6,7 @@ import {
 
 export const menuList = [
   {
-    text: '个人主页',
+    text: '主页',
     icon: <InsertEmoticonOutlined />,
     path: '/',
   },
@@ -31,9 +31,6 @@ export const textList = [
   },
   {
     text: '描述',
-  },
-  {
-    text: '联系方式',
   },
 ]
 

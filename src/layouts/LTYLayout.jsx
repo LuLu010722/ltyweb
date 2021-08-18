@@ -7,7 +7,9 @@ import {
   makeStyles,
   Avatar,
   Box,
+  Popper,
   IconButton,
+  Fade,
 } from '@material-ui/core'
 
 import { SideBar } from '../containers/SideBar'
@@ -37,6 +39,9 @@ const useLTYLayoutStyles = makeStyles((theme) => ({
   },
   avatar: {
     marginLeft: theme.spacing(2),
+    '& :hover': {
+      cursor: 'pointer',
+    },
   },
 }))
 
@@ -61,7 +66,7 @@ export const LTYLayout = ({ children }) => {
           <Typography className={classes.appBarText}>
             欢迎来到我的个人主页
           </Typography>
-          <Typography>卢天宇</Typography>
+          <Typography>LuLu010722</Typography>
           <Avatar src="avatar.png" className={classes.avatar} />
         </Toolbar>
       </AppBar>

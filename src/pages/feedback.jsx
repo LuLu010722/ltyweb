@@ -86,7 +86,7 @@ export const FeedbackPage = () => {
       <Grid container spacing={3}>
         {feedbacks.map((feedback) => {
           return (
-            <Grid item key={feedback.id} xs={12} sm={6} md={3}>
+            <Grid item key={feedback.id} xs={12} sm={6} md={4} lg={3} xl={2}>
               <FeedbackCard
                 feedback={feedback}
                 handleSolve={handleSolve}
