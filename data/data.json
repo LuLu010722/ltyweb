@@ -35,6 +35,12 @@
       "status": "todo",
       "details": "查阅流行主页布局，设置样式",
       "id": 5
+    },
+    {
+      "title": "Dialog",
+      "status": "todo",
+      "details": "将所有window.alert window.confirm window.prompt转换为Dialog",
+      "id": 6
     }
   ]
 }
