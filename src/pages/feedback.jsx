@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react'
 
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, makeStyles, Typography } from '@material-ui/core'
 
 import { FeedbackCard } from '../components/FeedbackCard'
 import { AddFeedbackInput } from '../components/AddFeedbackInput'
 import { Divider } from '../components/Divider'
 
+const useStyles = makeStyles((theme) => {
+  return {
+    typography: {
+      marginBottom: theme.spacing(2),
+    },
+  }
+})
+
 export const FeedbackPage = () => {
+  const classes = useStyles()
   const [feedbacks, setFeedbacks] = useState([])
 
   const refresh = async () => {
@@ -69,7 +78,11 @@ export const FeedbackPage = () => {
     <>
       <AddFeedbackInput refresh={refresh} />
       <Divider />
-      {!!feedbacks.length && <Typography gutterBottom>bug列表</Typography>}
+      {!!feedbacks.length && (
+        <Typography variant="h6" className={classes.typography}>
+          bug列表
+        </Typography>
+      )}
       <Grid container spacing={3}>
         {feedbacks.map((feedback) => {
           return (

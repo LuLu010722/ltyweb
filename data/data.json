@@ -1,0 +1,27 @@
+{
+  "feedbacks": [
+    {
+      "title": "BUG#1",
+      "details": "点击侧边栏切换页面时，如果侧边栏处于折叠状态，则会自动展开。",
+      "contact": "LuLu",
+      "status": "info",
+      "id": 1,
+      "solution": "将LTYLayout作为所有Route的父组件，则不会在路由时重载侧边栏"
+    },
+    {
+      "title": "TODO#2",
+      "details": "制作todo样式，设置已解决状态下不可重复解决，或支持多解决，添加状态chip",
+      "contact": "LuLu",
+      "status": "info",
+      "id": 2,
+      "solution": "已完成"
+    },
+    {
+      "title": "BUG#3",
+      "details": "状态下拉条对不齐",
+      "contact": "lulu",
+      "status": "bug",
+      "id": 3
+    }
+  ]
+}

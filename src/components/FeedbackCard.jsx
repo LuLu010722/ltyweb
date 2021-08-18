@@ -15,19 +15,27 @@ import {
   CheckCircleOutlineRounded,
   DeleteOutlined,
   ExpandMoreRounded,
-} from "@material-ui/icons";
+} from '@material-ui/icons'
 
-import { Divider } from "./Divider";
+import { Divider } from './Divider'
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
       backgroundColor: ({ status }) =>
-        status === 'bug' ? theme.palette.error.light : theme.palette.info.light,
+        status === 'bug'
+          ? theme.palette.error.light
+          : status === 'todo'
+          ? theme.palette.warning.light
+          : theme.palette.info.light,
     },
     avatar: {
       backgroundColor: ({ status }) =>
-        status === 'bug' ? theme.palette.error.dark : theme.palette.info.dark,
+        status === 'bug'
+          ? theme.palette.error.dark
+          : status === 'todo'
+          ? theme.palette.warning.dark
+          : theme.palette.info.dark,
     },
     solutionAvatar: {
       backgroundColor: theme.palette.success.main,
@@ -43,12 +51,11 @@ const useStyles = makeStyles((theme) => {
 
 export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
   const [expand, setExpand] = useState(false)
-  const status = feedback.status
-  const classes = useStyles({ status, expand })
+  const classes = useStyles({ status: feedback.status, expand })
 
   const handleExpand = () => {
-    setExpand(!expand);
-  };
+    setExpand(!expand)
+  }
 
   return (
     <Box>
@@ -58,7 +65,10 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
           title={feedback.title}
           action={
             <>
-              <IconButton onClick={() => handleSolve(feedback.id)}>
+              <IconButton
+                disabled={feedback.status === 'info'}
+                onClick={() => handleSolve(feedback.id)}
+              >
                 <CheckCircleOutlineRounded />
               </IconButton>
               <IconButton onClick={() => handleDelete(feedback.id, 1)}>

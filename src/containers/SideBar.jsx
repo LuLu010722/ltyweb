@@ -13,11 +13,12 @@ import {
 import { menuList } from '../data/list'
 
 const drawerWidth = 200
+const collapseDrawerWidth = 55
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: (expand) => {
-      return expand ? drawerWidth : 55
+      return expand ? drawerWidth : collapseDrawerWidth
     },
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.easeOut,
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   listIcon: {
-    width: 55,
+    width: collapseDrawerWidth,
     color: 'violet',
   },
   listText: {

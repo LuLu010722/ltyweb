@@ -27,9 +27,14 @@ export const textList = [
     text: '标题',
   },
   {
+    text: '状态',
+  },
+  {
     text: '描述',
   },
   {
     text: '联系方式',
   },
 ]
+
+export const statusList = ['info', 'todo', 'bug']
