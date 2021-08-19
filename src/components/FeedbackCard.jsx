@@ -10,6 +10,12 @@ import {
   makeStyles,
   Collapse,
   Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+  DialogActions,
+  Button,
 } from '@material-ui/core'
 import {
   CheckCircleOutlineRounded,
@@ -18,6 +24,7 @@ import {
 } from '@material-ui/icons'
 
 import { Divider } from './Divider'
+import { DialogSolve } from './DialogSolve'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -49,8 +56,15 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
+export const FeedbackCard = ({
+  feedback,
+  handleDelete,
+  handleSolve,
+  solution,
+  setSolution,
+}) => {
   const [expand, setExpand] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles({ status: feedback.status, expand })
 
   const handleExpand = () => {
@@ -68,10 +82,20 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
             <>
               <IconButton
                 disabled={feedback.status === 'info'}
-                onClick={() => handleSolve(feedback.id)}
+                onClick={() => setDialogOpen(true)}
               >
                 <CheckCircleOutlineRounded />
               </IconButton>
+              <DialogSolve
+                title="请描述解决方法"
+                textFieldLabel="方法"
+                feedback={feedback}
+                open={dialogOpen}
+                solution={solution}
+                setOpen={setDialogOpen}
+                setSolution={setSolution}
+                handleSolve={handleSolve}
+              />
               <IconButton
                 disabled={feedback.status === 'info'}
                 onClick={() => handleDelete(feedback.id, 1)}
@@ -95,7 +119,12 @@ export const FeedbackCard = ({ feedback, handleDelete, handleSolve }) => {
                   <IconButton onClick={handleExpand}>
                     <ExpandMoreRounded className={classes.expandIconButton} />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(feedback.id, 2)}>
+                  <IconButton
+                    onClick={() => {
+                      handleDelete(feedback.id, 2)
+                      setExpand(false)
+                    }}
+                  >
                     <DeleteOutlined />
                   </IconButton>
                 </>

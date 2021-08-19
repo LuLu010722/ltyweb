@@ -19,10 +19,7 @@ const SimpleDialog = (props) => {
   }
 
   return (
-    <Dialog
-      onClose={handleClose}
-      open={open}
-    >
+    <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Set back account</DialogTitle>
       <List>
         <ListItem button onClick={() => handleListItemClick(1)}>
@@ -41,7 +38,7 @@ const SimpleDialog = (props) => {
 
 export const InfoPage = () => {
   const [open, setOpen] = useState(false)
-  const [selectdValue, setSelectedValue] = useState(-1)
+  const [selectedValue, setSelectedValue] = useState(0)
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -68,6 +65,7 @@ export const InfoPage = () => {
         open={open}
         onClose={handleClose}
       />
+      {!!selectedValue && <Typography variant="h3">I am clicked!</Typography>}
     </>
   )
 }

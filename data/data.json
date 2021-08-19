@@ -26,9 +26,10 @@
     },
     {
       "title": "头像下拉框",
-      "status": "todo",
+      "status": "bug",
       "details": "添加右上角头像的下拉框",
-      "id": 4
+      "id": 4,
+      "solution": ""
     },
     {
       "title": "设置主页样式",

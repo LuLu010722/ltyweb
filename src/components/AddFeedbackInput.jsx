@@ -49,7 +49,7 @@ export const AddFeedbackInput = ({ refresh }) => {
       return
     }
 
-    const content = { title, status, details }
+    const content = { title, status, details, solution: '' }
     fetch('http://localhost:8000/feedbacks', {
       method: 'POST',
       headers: {
