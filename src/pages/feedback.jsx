@@ -22,7 +22,7 @@ export const FeedbackPage = () => {
   const [solution, setSolution] = useState('')
 
   const refresh = async () => {
-    await fetch('http://localhost:8000/feedbacks')
+    await fetch('http://425186i3q1.zicp.vip:51076/feedbacks')
       .then((res) => res.json())
       .then((data) => {
         setFeedbacks(data)
@@ -31,7 +31,7 @@ export const FeedbackPage = () => {
   }
 
   const handleSolve = (id) => {
-    fetch('http://localhost:8000/feedbacks/' + id, {
+    fetch('http://425186i3q1.zicp.vip:51076/feedbacks/' + id, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -46,7 +46,7 @@ export const FeedbackPage = () => {
   const handleDelete = (id, type) => {
     if (type === 1) {
       if (window.confirm('确定删除该反馈吗？')) {
-        fetch('http://localhost:8000/feedbacks/' + id, {
+        fetch('http://425186i3q1.zicp.vip:51076/feedbacks/' + id, {
           method: 'DELETE',
         }).then(() => {
           refresh()
@@ -54,7 +54,7 @@ export const FeedbackPage = () => {
       }
     } else if (type === 2) {
       if (window.confirm('确定删除改解决方法吗？')) {
-        fetch('http://localhost:8000/feedbacks/' + id, {
+        fetch('http://425186i3q1.zicp.vip:51076/feedbacks/' + id, {
           method: 'PATCH',
           headers: {
             'Content-type': 'application/json',

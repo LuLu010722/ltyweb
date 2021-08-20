@@ -10,21 +10,16 @@ import {
   makeStyles,
   Collapse,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
-  DialogActions,
-  Button,
 } from '@material-ui/core'
 import {
   CheckCircleOutlineRounded,
   DeleteOutlined,
   ExpandMoreRounded,
 } from '@material-ui/icons'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { Divider } from './Divider'
-import { DialogSolve } from './DialogSolve'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -56,16 +51,11 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-export const FeedbackCard = ({
-  feedback,
-  handleDelete,
-  handleSolve,
-  solution,
-  setSolution,
-}) => {
+export const FeedbackCard = ({ feedback, handleDelete }) => {
   const [expand, setExpand] = useState(false)
-  const [dialogOpen, setDialogOpen] = useState(false)
   const classes = useStyles({ status: feedback.status, expand })
+
+  const mySwal = withReactContent(Swal)
 
   const handleExpand = () => {
     setExpand(!expand)
@@ -82,20 +72,18 @@ export const FeedbackCard = ({
             <>
               <IconButton
                 disabled={feedback.status === 'info'}
-                onClick={() => setDialogOpen(true)}
+                onClick={() => {
+                  mySwal
+                    .fire({
+                      title: <Typography variant="h5">Hello world</Typography>,
+                    })
+                    .then(() => {
+                      return mySwal.fire(<Typography>yeah!</Typography>)
+                    })
+                }}
               >
                 <CheckCircleOutlineRounded />
               </IconButton>
-              <DialogSolve
-                title="请描述解决方法"
-                textFieldLabel="方法"
-                feedback={feedback}
-                open={dialogOpen}
-                solution={solution}
-                setOpen={setDialogOpen}
-                setSolution={setSolution}
-                handleSolve={handleSolve}
-              />
               <IconButton
                 disabled={feedback.status === 'info'}
                 onClick={() => handleDelete(feedback.id, 1)}
