@@ -1,7 +1,7 @@
 {
   "name": "lty",
   "version": "0.1.0",
-  "homepage": "https://lulu010722.github.io/ltyweb",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
