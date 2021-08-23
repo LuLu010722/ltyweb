@@ -9,8 +9,11 @@ import {
   MenuItem,
 } from '@material-ui/core'
 import { KeyboardArrowRight } from '@material-ui/icons'
+import Swal from 'sweetalert2'
 
 import { statusList, textList } from '../data/list'
+
+const host = 'http://localhost:4000/feedbacks/'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -49,15 +52,24 @@ export const AddFeedbackInput = ({ refresh }) => {
       return
     }
 
-    const content = { title, status, details, solution: '' }
-    fetch('http://localhost:8000/feedbacks', {
+    const content = {
+      title,
+      status,
+      details,
+      solution: '',
+      initialStatus: status,
+    }
+    fetch(host, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(content),
-    }).then(() => {
-      alert('提交成功，谢谢您的反馈！')
+    }).then(async () => {
+      await Swal.fire({
+        icon: 'success',
+        title: '提交成功！谢谢你呀quq',
+      })
       refresh()
     })
   }

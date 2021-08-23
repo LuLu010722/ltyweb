@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import { Grid, makeStyles, Typography } from '@material-ui/core'
-import { useConfirm } from 'material-ui-confirm'
 
 import { FeedbackCard } from '../components/FeedbackCard'
 import { AddFeedbackInput } from '../components/AddFeedbackInput'
 import { Divider } from '../components/Divider'
+
+const host = 'http://localhost:4000/feedbacks/'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -17,12 +18,10 @@ const useStyles = makeStyles((theme) => {
 
 export const FeedbackPage = () => {
   const classes = useStyles()
-  const confirm = useConfirm()
   const [feedbacks, setFeedbacks] = useState([])
-  const [solution, setSolution] = useState('')
 
   const refresh = async () => {
-    await fetch('http://425186i3q1.zicp.vip:51076/feedbacks')
+    await fetch(host)
       .then((res) => res.json())
       .then((data) => {
         setFeedbacks(data)
@@ -30,41 +29,38 @@ export const FeedbackPage = () => {
       .catch((reason) => alert(reason))
   }
 
-  const handleSolve = (id) => {
-    fetch('http://425186i3q1.zicp.vip:51076/feedbacks/' + id, {
+  const handleSolve = (id, solution) => {
+    fetch(host + id, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({ status: 'info', solution }),
     }).then(() => {
-      setSolution('')
       refresh()
     })
   }
 
-  const handleDelete = (id, type) => {
+  /**
+   * @param type indicate what content you want to delete.
+   *             1 for the whole card,
+   *             2 for the solution
+   */
+  const handleDelete = async (id, type, initialStatus) => {
     if (type === 1) {
-      if (window.confirm('确定删除该反馈吗？')) {
-        fetch('http://425186i3q1.zicp.vip:51076/feedbacks/' + id, {
-          method: 'DELETE',
-        }).then(() => {
-          refresh()
-        })
-      }
-    } else if (type === 2) {
-      if (window.confirm('确定删除改解决方法吗？')) {
-        fetch('http://425186i3q1.zicp.vip:51076/feedbacks/' + id, {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify({ status: 'bug', solution: '' }),
-        }).then(() => {
-          refresh()
-        })
-      }
+      await fetch(host + id, {
+        method: 'DELETE',
+      })
+    } else {
+      await fetch(host + id, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ status: initialStatus, solution: '' }),
+      })
     }
+    refresh()
   }
 
   useEffect(() => {
@@ -88,8 +84,6 @@ export const FeedbackPage = () => {
                 feedback={feedback}
                 handleSolve={handleSolve}
                 handleDelete={handleDelete}
-                solution={solution}
-                setSolution={setSolution}
               />
             </Grid>
           )
