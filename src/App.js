@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/styles'
 import { ConfirmProvider } from 'material-ui-confirm'
+import '@sweetalert2/themes/material-ui'
 
 import { ltyTheme } from './theme'
 import { IndexPage } from './pages'

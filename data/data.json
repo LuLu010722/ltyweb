@@ -45,10 +45,34 @@
     },
     {
       "title": "头像下拉框",
-      "status": "todo",
+      "status": "info",
       "details": "添加右上角头像下拉框",
       "solution": "",
       "id": 7
+    },
+    {
+      "title": "swal不在顶层",
+      "status": "info",
+      "details": "如果网页过小，swal会被挡在顶栏和侧边栏的下方",
+      "solution": "设置一下全局的important z-index",
+      "initialStatus": "bug",
+      "id": 8
+    },
+    {
+      "title": "swal主题",
+      "status": "info",
+      "details": "swal的material-ui主题不生效",
+      "solution": "swal的导入方式不对，应该导入src里的js文件，该文件的swal才会被覆盖",
+      "initialStatus": "bug",
+      "id": 9
+    },
+    {
+      "title": "input清空",
+      "status": "todo",
+      "details": "在bug输入栏提交之后，三个输入栏应当清空",
+      "solution": "",
+      "initialStatus": "todo",
+      "id": 10
     }
   ]
 }

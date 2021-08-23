@@ -10,7 +10,7 @@ import {
   makeStyles,
 } from '@material-ui/core'
 
-import { menuList } from '../data/list'
+import { menuList } from '../data/global'
 
 const drawerWidth = 200
 const collapseDrawerWidth = 55

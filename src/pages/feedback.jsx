@@ -5,8 +5,7 @@ import { Grid, makeStyles, Typography } from '@material-ui/core'
 import { FeedbackCard } from '../components/FeedbackCard'
 import { AddFeedbackInput } from '../components/AddFeedbackInput'
 import { Divider } from '../components/Divider'
-
-const host = 'http://localhost:4000/feedbacks/'
+import { hostPath } from '../data/global'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -21,7 +20,7 @@ export const FeedbackPage = () => {
   const [feedbacks, setFeedbacks] = useState([])
 
   const refresh = async () => {
-    await fetch(host)
+    await fetch(hostPath)
       .then((res) => res.json())
       .then((data) => {
         setFeedbacks(data)
@@ -30,7 +29,7 @@ export const FeedbackPage = () => {
   }
 
   const handleSolve = (id, solution) => {
-    fetch(host + id, {
+    fetch(hostPath + id, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -48,11 +47,11 @@ export const FeedbackPage = () => {
    */
   const handleDelete = async (id, type, initialStatus) => {
     if (type === 1) {
-      await fetch(host + id, {
+      await fetch(hostPath + id, {
         method: 'DELETE',
       })
     } else {
-      await fetch(host + id, {
+      await fetch(hostPath + id, {
         method: 'PATCH',
         headers: {
           'Content-type': 'application/json',

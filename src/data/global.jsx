@@ -4,6 +4,8 @@ import {
   FeedbackOutlined,
 } from '@material-ui/icons'
 
+export const hostPath = 'http://localhost:4000/feedbacks/'
+
 export const menuList = [
   {
     text: '主页',

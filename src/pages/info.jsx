@@ -40,10 +40,6 @@ export const InfoPage = () => {
   const [open, setOpen] = useState(false)
   const [selectedValue, setSelectedValue] = useState(0)
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
   const handleClose = (value) => {
     setOpen(false)
     setSelectedValue(value)

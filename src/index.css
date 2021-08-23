@@ -3,3 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.swal2-container {
+  z-index: 2000 !important;
+}

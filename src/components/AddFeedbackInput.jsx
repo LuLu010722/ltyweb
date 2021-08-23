@@ -9,11 +9,10 @@ import {
   MenuItem,
 } from '@material-ui/core'
 import { KeyboardArrowRight } from '@material-ui/icons'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
-import { statusList, textList } from '../data/list'
-
-const host = 'http://localhost:4000/feedbacks/'
+import { statusList, textList } from '../data/global'
+import { hostPath } from '../data/global'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -59,7 +58,7 @@ export const AddFeedbackInput = ({ refresh }) => {
       solution: '',
       initialStatus: status,
     }
-    fetch(host, {
+    fetch(hostPath, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

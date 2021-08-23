@@ -16,7 +16,7 @@ import {
   DeleteOutlined,
   ExpandMoreRounded,
 } from '@material-ui/icons'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
 import { Divider } from './Divider'
 
@@ -99,23 +99,21 @@ export const FeedbackCard = ({ feedback, handleSolve, handleDelete }) => {
               <IconButton
                 disabled={feedback.status === 'info'}
                 onClick={() => {
-                  Swal
-                    .fire({
-                      icon: 'warning',
-                      title: '确定要删除该卡片吗？',
-                      showCancelButton: true,
-                      confirmButtonText: '确定',
-                      cancelButtonText: '取消',
-                    })
-                    .then(async (isConfirmed) => {
-                      if (isConfirmed.value) {
-                        await Swal.fire({
-                          icon: 'success',
-                          title: '删除成功！',
-                        })
-                        handleDelete(feedback.id, 1)
-                      }
-                    })
+                  Swal.fire({
+                    icon: 'warning',
+                    title: '确定要删除该卡片吗？',
+                    showCancelButton: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                  }).then(async (isConfirmed) => {
+                    if (isConfirmed.value) {
+                      await Swal.fire({
+                        icon: 'success',
+                        title: '删除成功！',
+                      })
+                      handleDelete(feedback.id, 1)
+                    }
+                  })
                 }}
               >
                 <DeleteOutlined />
@@ -139,25 +137,23 @@ export const FeedbackCard = ({ feedback, handleSolve, handleDelete }) => {
                   </IconButton>
                   <IconButton
                     onClick={() => {
-                      Swal
-                        .fire({
-                          icon: 'warning',
-                          title: '你确定要删除该解决方法吗？',
-                          text: '删除后，该卡片将会被变为bug或todo',
-                          showCancelButton: true,
-                          confirmButtonText: '确定',
-                          cancelButtonText: '取消',
-                        })
-                        .then(async (isConfirmed) => {
-                          if (isConfirmed.value) {
-                            await Swal.fire({
-                              icon: 'success',
-                              title: '删除成功！',
-                            })
-                            handleDelete(feedback.id, 2, feedback.initialStatus)
-                            setExpand(false)
-                          }
-                        })
+                      Swal.fire({
+                        icon: 'warning',
+                        title: '你确定要删除该解决方法吗？',
+                        text: '删除后，该卡片将会被变为bug或todo',
+                        showCancelButton: true,
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                      }).then(async (isConfirmed) => {
+                        if (isConfirmed.value) {
+                          await Swal.fire({
+                            icon: 'success',
+                            title: '删除成功！',
+                          })
+                          handleDelete(feedback.id, 2, feedback.initialStatus)
+                          setExpand(false)
+                        }
+                      })
                     }}
                   >
                     <DeleteOutlined />

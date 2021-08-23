@@ -7,9 +7,7 @@ import {
   makeStyles,
   Avatar,
   Box,
-  Popper,
   IconButton,
-  Fade,
 } from '@material-ui/core'
 
 import { SideBar } from '../containers/SideBar'
