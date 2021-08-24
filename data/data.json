@@ -90,6 +90,14 @@
       "solution": "设置onkeydown给描述输入框",
       "initialStatus": "todo",
       "id": 12
+    },
+    {
+      "title": "feedback card action",
+      "status": "info",
+      "details": "action里的图标按钮在宽度过小时被挤出屏幕",
+      "solution": "把标题放到下一行",
+      "initialStatus": "bug",
+      "id": 13
     }
   ]
 }

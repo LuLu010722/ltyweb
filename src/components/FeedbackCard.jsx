@@ -63,8 +63,6 @@ export const FeedbackCard = ({ feedback, handleSolve, handleDelete }) => {
       <Card className={classes.root} elevation={3}>
         <CardHeader
           avatar={<Avatar className={classes.avatar}>#{feedback.id}</Avatar>}
-          title={feedback.title}
-          subheader={feedback.status.toUpperCase() + '#' + feedback.id}
           action={
             <>
               <IconButton
@@ -119,6 +117,10 @@ export const FeedbackCard = ({ feedback, handleSolve, handleDelete }) => {
               </IconButton>
             </>
           }
+        />
+        <CardHeader
+          title={feedback.title}
+          subheader={feedback.status.toUpperCase() + '#' + feedback.id}
         />
         <CardContent>
           <Typography>{feedback.details}</Typography>

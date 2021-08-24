@@ -48,6 +48,10 @@ export const AddFeedbackInput = ({ refresh }) => {
     setErrorStatus(status.trim() === '')
     setErrorDetails(details.trim() === '')
     if (title.trim() === '' || status.trim() === '' || details.trim() === '') {
+      Swal.fire({
+        icon: 'error',
+        title: '内容都要填写哟quq',
+      })
       return
     }
 
@@ -135,11 +139,13 @@ export const AddFeedbackInput = ({ refresh }) => {
             setDetails(e.target.value)
           }}
           onKeyDown={handleKeyDown}
+          placeholder="ctrl+enter可以快捷提交哟"
           multiline
           minRows={3}
         />
         <Button
           endIcon={<KeyboardArrowRight />}
+          focusRipple={false}
           type="submit"
           variant="contained"
           color="primary"

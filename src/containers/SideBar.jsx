@@ -1,4 +1,5 @@
-import { useLocation, useHistory } from 'react-router'
+import { useState } from 'react'
+import { useHistory } from 'react-router'
 
 import {
   Drawer,
@@ -12,7 +13,7 @@ import {
 
 import { menuList } from '../data/global'
 
-const drawerWidth = 200
+const drawerWidth = 115
 const collapseDrawerWidth = 55
 
 const useStyles = makeStyles((theme) => ({
@@ -37,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
   },
   listText: {
     whiteSpace: 'nowrap',
+    marginLeft: theme.spacing(-2),
   },
 }))
 
 export const SideBar = ({ expand }) => {
   const classes = useStyles(expand)
+  const [selectNumber, setSelectNumber] = useState(undefined)
   const history = useHistory()
-  const location = useLocation()
 
   return (
     <Drawer
@@ -54,15 +56,14 @@ export const SideBar = ({ expand }) => {
       <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
-          {menuList.map((item) => {
+          {menuList.map((item, index) => {
             return (
               <ListItem
-                className={
-                  location.pathname === item.path ? classes.itemSelected : null
-                }
                 button
                 key={item.text}
+                selected={selectNumber === index}
                 onClick={() => {
+                  setSelectNumber(index)
                   return history.push(item.path)
                 }}
               >
