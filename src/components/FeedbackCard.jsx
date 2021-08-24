@@ -16,7 +16,7 @@ import {
   DeleteOutlined,
   ExpandMoreRounded,
 } from '@material-ui/icons'
-import Swal from 'sweetalert2/src/sweetalert2.js'
+import Swal from 'sweetalert2'
 
 import { Divider } from './Divider'
 

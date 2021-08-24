@@ -9,7 +9,7 @@ import {
   MenuItem,
 } from '@material-ui/core'
 import { KeyboardArrowRight } from '@material-ui/icons'
-import Swal from 'sweetalert2/src/sweetalert2.js'
+import Swal from 'sweetalert2'
 
 import { statusList, textList } from '../data/global'
 import { hostPath } from '../data/global'

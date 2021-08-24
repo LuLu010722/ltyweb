@@ -1,13 +1,17 @@
 import React from 'react'
 
 import {
+  Box,
+  Popover,
   AppBar,
   Toolbar,
   Typography,
   makeStyles,
   Avatar,
-  Box,
   IconButton,
+  List,
+  ListItem,
+  Container,
 } from '@material-ui/core'
 
 import { SideBar } from '../containers/SideBar'
@@ -41,14 +45,29 @@ const useLTYLayoutStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+  popover: {
+    marginTop: theme.spacing(2),
+  },
+  popoverContent: {
+    margin: theme.spacing(1),
+  },
 }))
 
 export const LTYLayout = ({ children }) => {
   const classes = useLTYLayoutStyles()
   const [sideBarExpand, setSideBarExpand] = useState(true)
+  const [anchorEl, setAnchorEl] = useState(null)
 
   const handleAppBarIconClick = () => {
     setSideBarExpand(!sideBarExpand)
+  }
+
+  const handleAvatarClick = (e) => {
+    setAnchorEl(e.currentTarget)
+  }
+
+  const handleAvatarClose = () => {
+    setAnchorEl(null)
   }
 
   return (
@@ -65,7 +84,35 @@ export const LTYLayout = ({ children }) => {
             欢迎来到我的个人主页
           </Typography>
           <Typography>LuLu010722</Typography>
-          <Avatar src="avatar.png" className={classes.avatar} />
+          <Avatar
+            src="avatar.png"
+            className={classes.avatar}
+            onClick={handleAvatarClick}
+          />
+          <Popover
+            className={classes.popover}
+            open={!!anchorEl}
+            anchorEl={anchorEl}
+            onClose={handleAvatarClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <Box
+              className={classes.popoverContent}
+              display="flex"
+              flexDirection="column"
+            >
+              <ListItem button>点赞</ListItem>
+              <ListItem button>收藏</ListItem>
+              <ListItem button>投币</ListItem>
+            </Box>
+          </Popover>
         </Toolbar>
       </AppBar>
       <SideBar expand={sideBarExpand} />
