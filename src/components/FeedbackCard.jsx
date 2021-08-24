@@ -97,7 +97,6 @@ export const FeedbackCard = ({ feedback, handleSolve, handleDelete }) => {
                 <CheckCircleOutlineRounded />
               </IconButton>
               <IconButton
-                disabled={feedback.status === 'info'}
                 onClick={() => {
                   Swal.fire({
                     icon: 'warning',

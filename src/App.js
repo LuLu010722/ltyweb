@@ -8,6 +8,7 @@ import { IndexPage } from './pages'
 import { InfoPage } from './pages/info'
 import { FeedbackPage } from './pages/feedback'
 import { LTYLayout } from './layouts/LTYLayout'
+import { menuList } from './data/global'
 
 export const App = () => {
   return (
@@ -27,13 +28,13 @@ export const App = () => {
         <Router>
           <LTYLayout>
             <Switch>
-              <Route exact path="/">
+              <Route exact path={menuList[0].path}>
                 <IndexPage />
               </Route>
-              <Route path="/info">
+              <Route path={menuList[1].path}>
                 <InfoPage />
               </Route>
-              <Route path="/feedback">
+              <Route path={menuList[2].path}>
                 <FeedbackPage />
               </Route>
             </Switch>

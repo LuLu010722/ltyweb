@@ -45,9 +45,10 @@
     },
     {
       "title": "头像下拉框",
-      "status": "info",
+      "status": "todo",
       "details": "添加右上角头像下拉框",
       "solution": "",
+      "initialStatus": "todo",
       "id": 7
     },
     {
@@ -68,11 +69,27 @@
     },
     {
       "title": "input清空",
-      "status": "todo",
+      "status": "info",
       "details": "在bug输入栏提交之后，三个输入栏应当清空",
-      "solution": "",
+      "solution": "在textfield中添加value属性，并设置为对应的非受控的state值",
       "initialStatus": "todo",
       "id": 10
+    },
+    {
+      "title": "日记页",
+      "status": "todo",
+      "details": "添加一个日记页，记录每日开发内容",
+      "solution": "",
+      "initialStatus": "todo",
+      "id": 11
+    },
+    {
+      "title": "快捷提交",
+      "status": "info",
+      "details": "在描述框填写完毕后，ctrl+enter快捷提交",
+      "solution": "设置onkeydown给描述输入框",
+      "initialStatus": "todo",
+      "id": 12
     }
   ]
 }

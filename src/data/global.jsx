@@ -13,9 +13,9 @@ export const menuList = [
     path: '/',
   },
   {
-    text: '信息',
+    text: '日记',
     icon: <InfoOutlined />,
-    path: '/info',
+    path: '/diary',
   },
   {
     text: '反馈',

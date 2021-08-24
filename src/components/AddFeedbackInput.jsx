@@ -70,7 +70,16 @@ export const AddFeedbackInput = ({ refresh }) => {
         title: '提交成功！谢谢你呀quq',
       })
       refresh()
+      setTitle('')
+      setStatus('')
+      setDetails('')
     })
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.ctrlKey && e.keyCode === 13) {
+      handleSubmit(e)
+    }
   }
 
   return (
@@ -87,6 +96,7 @@ export const AddFeedbackInput = ({ refresh }) => {
             error={errorTitle}
             key={textList[0].text}
             label={textList[0].text}
+            value={title}
             onChange={(e) => {
               setTitle(e.target.value)
             }}
@@ -96,10 +106,10 @@ export const AddFeedbackInput = ({ refresh }) => {
             variant="outlined"
             required
             select
-            value={status}
             error={errorStatus}
             key={textList[1].text}
             label={textList[1].text}
+            value={status}
             onChange={(e) => {
               setStatus(e.target.value)
             }}
@@ -120,9 +130,11 @@ export const AddFeedbackInput = ({ refresh }) => {
           error={errorDetails}
           key={textList[2].text}
           label={textList[2].text}
+          value={details}
           onChange={(e) => {
             setDetails(e.target.value)
           }}
+          onKeyDown={handleKeyDown}
           multiline
           minRows={3}
         />
