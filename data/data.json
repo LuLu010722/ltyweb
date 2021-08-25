@@ -98,6 +98,14 @@
       "solution": "把标题放到下一行",
       "initialStatus": "bug",
       "id": 13
+    },
+    {
+      "title": "注册和登录",
+      "status": "todo",
+      "details": "在首次点击进入页面后，需要登录，没有账号，则需要注册",
+      "solution": "",
+      "initialStatus": "todo",
+      "id": 14
     }
   ]
 }

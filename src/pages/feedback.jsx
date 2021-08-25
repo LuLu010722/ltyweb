@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { Grid, makeStyles, Typography } from '@material-ui/core'
+import Masonry from 'react-masonry-css'
 
 import { FeedbackCard } from '../components/FeedbackCard'
 import { AddFeedbackInput } from '../components/AddFeedbackInput'
@@ -18,6 +19,13 @@ const useStyles = makeStyles((theme) => {
 export const FeedbackPage = () => {
   const classes = useStyles()
   const [feedbacks, setFeedbacks] = useState([])
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1400: 3,
+    1000: 2,
+    600: 1,
+  }
 
   const refresh = async () => {
     await fetch(hostPath)
@@ -75,19 +83,23 @@ export const FeedbackPage = () => {
           bug列表
         </Typography>
       )}
-      <Grid container spacing={3}>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {feedbacks.map((feedback) => {
           return (
-            <Grid item key={feedback.id} xs={12} sm={6} md={4} lg={3} xl={2}>
+            <div key={feedback.id}>
               <FeedbackCard
                 feedback={feedback}
                 handleSolve={handleSolve}
                 handleDelete={handleDelete}
               />
-            </Grid>
+            </div>
           )
         })}
-      </Grid>
+      </Masonry>
     </>
   )
 }
