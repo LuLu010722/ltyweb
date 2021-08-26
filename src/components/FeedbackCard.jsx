@@ -120,7 +120,7 @@ export const FeedbackCard = ({ feedback, handleSolve, handleDelete }) => {
         />
         <CardHeader
           title={feedback.title}
-          subheader={feedback.status.toUpperCase() + '#' + feedback.id}
+          subheader={feedback.initialStatus.toUpperCase() + '#' + feedback.id}
         />
         <CardContent>
           <Typography>{feedback.details}</Typography>

@@ -4,13 +4,13 @@ import {
   FeedbackOutlined,
 } from '@material-ui/icons'
 
-export const hostPath = 'http://localhost:4000/feedbacks/'
+export const hostPath = 'http://localhost:4000/'
 
 export const menuList = [
   {
     text: '主页',
     icon: <InsertEmoticonOutlined />,
-    path: '/',
+    path: '/index',
   },
   {
     text: '日记',

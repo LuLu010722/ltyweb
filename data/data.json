@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "username": "LuLu",
+      "password": "LuLu010722",
+      "id": 1
+    }
+  ],
   "feedbacks": [
     {
       "title": "BUG#1",
@@ -45,9 +52,9 @@
     },
     {
       "title": "头像下拉框",
-      "status": "todo",
+      "status": "info",
       "details": "添加右上角头像下拉框",
-      "solution": "",
+      "solution": "popover，不过还尚且比较简单。。",
       "initialStatus": "todo",
       "id": 7
     },
@@ -106,6 +113,22 @@
       "solution": "",
       "initialStatus": "todo",
       "id": 14
+    },
+    {
+      "title": "card瀑布",
+      "status": "info",
+      "details": "feedback cards用masonry布局",
+      "solution": "react-masonry-css",
+      "initialStatus": "todo",
+      "id": 15
+    },
+    {
+      "title": "login",
+      "status": "info",
+      "details": "在进入网站之前，先登录，设计登录界面",
+      "solution": "react页面设计+route中添加redirect",
+      "initialStatus": "todo",
+      "id": 16
     }
   ]
 }

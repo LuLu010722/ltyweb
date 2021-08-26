@@ -62,22 +62,26 @@ export const AddFeedbackInput = ({ refresh }) => {
       solution: '',
       initialStatus: status,
     }
-    fetch(hostPath, {
+    fetch(hostPath + 'feedbacks/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(content),
-    }).then(async () => {
-      await Swal.fire({
-        icon: 'success',
-        title: '提交成功！谢谢你呀quq',
-      })
-      refresh()
-      setTitle('')
-      setStatus('')
-      setDetails('')
     })
+      .then(async () => {
+        await Swal.fire({
+          icon: 'success',
+          title: '提交成功！谢谢你呀quq',
+        })
+        refresh()
+        setTitle('')
+        setStatus('')
+        setDetails('')
+      })
+      .catch((reason) => {
+        console.log(reason)
+      })
   }
 
   const handleKeyDown = (e) => {

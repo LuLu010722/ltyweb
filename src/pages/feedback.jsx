@@ -28,7 +28,7 @@ export const FeedbackPage = () => {
   }
 
   const refresh = async () => {
-    await fetch(hostPath)
+    await fetch(hostPath + "feedbacks/")
       .then((res) => res.json())
       .then((data) => {
         setFeedbacks(data)
@@ -37,7 +37,7 @@ export const FeedbackPage = () => {
   }
 
   const handleSolve = (id, solution) => {
-    fetch(hostPath + id, {
+    fetch(hostPath + "feedbacks/" + id, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -55,11 +55,11 @@ export const FeedbackPage = () => {
    */
   const handleDelete = async (id, type, initialStatus) => {
     if (type === 1) {
-      await fetch(hostPath + id, {
+      await fetch(hostPath + "feedbacks/" + id, {
         method: 'DELETE',
       })
     } else {
-      await fetch(hostPath + id, {
+      await fetch(hostPath + "feedbacks/" + id, {
         method: 'PATCH',
         headers: {
           'Content-type': 'application/json',
