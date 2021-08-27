@@ -29,9 +29,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5,
     boxShadow: '0 0 10px violet',
   },
-  typography: {
-    flexGrow: 1,
-  },
   textField: {
     marginTop: theme.spacing(3),
   },
@@ -43,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const LoginPage = ({ setLogin }) => {
+export const SignInPage = () => {
   const classes = useStyles()
 
   const history = useHistory()
@@ -56,24 +53,30 @@ export const LoginPage = ({ setLogin }) => {
       .then((res) => res.json())
       .then(async (res) => {
         const targetUser = res.find((user) => {
-          return user.username === id && user.password === password
+          return user.username === id
         })
         if (targetUser) {
-          await Swal.fire({
-            icon: 'success',
-            title: '登录成功',
-            timer: 1500,
-            timerProgressBar: true,
-          })
-          setLogin(true)
-          history.push('/index')
-        } else {
           Swal.fire({
             icon: 'error',
-            title: '啊哦，ID或者密码错误了哟quq',
+            title: 'ID已经存在了哟quq',
             timer: 1500,
             timerProgressBar: true,
           })
+        } else {
+          fetch(hostPath + 'users', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json',
+            },
+            body: JSON.stringify({ username: id, password }),
+          })
+          await Swal.fire({
+            icon: 'succuess',
+            title: '注册成功',
+            timer: 1500,
+            timerProgressBar: true,
+          })
+          history.push('/login')
         }
       })
       .catch((reason) => {
@@ -88,23 +91,9 @@ export const LoginPage = ({ setLogin }) => {
         <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Box display="flex" alignItems="center">
             <VerifiedUserRounded color="secondary" className={classes.icon} />
-            <Typography
-              className={classes.typography}
-              variant="h6"
-              color="primary"
-            >
-              登录
-            </Typography>
-            <Button
-              endIcon={<KeyboardArrowRightRounded />}
-              variant="contained"
-              color="secondary"
-              onClick={() => {
-                history.push('/signin')
-              }}
-            >
+            <Typography variant="h6" color="primary">
               注册
-            </Button>
+            </Typography>
           </Box>
           <TextField
             className={classes.textField}
