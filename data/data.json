@@ -1,13 +1,9 @@
 {
   "users": [
     {
-      "username": "1",
-      "password": "1",
+      "username": "lulu",
+      "password": "123123",
       "id": 1
-    },
-    {
-      "username": "11",
-      "id": 2
     }
   ],
   "feedbacks": [
@@ -112,9 +108,9 @@
     },
     {
       "title": "注册和登录",
-      "status": "todo",
+      "status": "info",
       "details": "在首次点击进入页面后，需要登录，没有账号，则需要注册",
-      "solution": "",
+      "solution": "尚且简陋，但是能用",
       "initialStatus": "todo",
       "id": 14
     },
@@ -133,6 +129,14 @@
       "solution": "react页面设计+route中添加redirect",
       "initialStatus": "todo",
       "id": 16
+    },
+    {
+      "title": "AppBar的用户名",
+      "status": "info",
+      "details": "AppBar的用户名不随登录用户改变而改变",
+      "solution": "在LTYOUT父组件里传给LAYOUT一个属性就行",
+      "initialStatus": "bug",
+      "id": 17
     }
   ]
 }

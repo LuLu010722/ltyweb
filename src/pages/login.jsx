@@ -19,15 +19,20 @@ import { hostPath } from '../data/global'
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    backgroundColor: theme.palette.grey[500]
+  },
+  box: {
     width: 400,
     height: 400,
-    position: 'fixed',
+    position: 'absolute',
     left: '50%',
     top: '50%',
     margin: '-200px 0 0 -200px',
-    border: '2px solid skyblue',
+    backgroundColor: '#fff',
     borderRadius: 5,
-    boxShadow: '0 0 10px violet',
   },
   typography: {
     flexGrow: 1,
@@ -43,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const LoginPage = ({ setLogin }) => {
+export const LoginPage = ({ setLogin, setUser }) => {
   const classes = useStyles()
 
   const history = useHistory()
@@ -66,6 +71,7 @@ export const LoginPage = ({ setLogin }) => {
             timerProgressBar: true,
           })
           setLogin(true)
+          setUser(targetUser)
           history.push('/index')
         } else {
           Swal.fire({
@@ -83,61 +89,65 @@ export const LoginPage = ({ setLogin }) => {
 
   return (
     <Box className={classes.root}>
-      <Container>
-        <Divider />
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-          <Box display="flex" alignItems="center">
-            <VerifiedUserRounded color="secondary" className={classes.icon} />
-            <Typography
-              className={classes.typography}
-              variant="h6"
-              color="primary"
-            >
-              登录
-            </Typography>
-            <Button
-              endIcon={<KeyboardArrowRightRounded />}
-              variant="contained"
-              color="secondary"
-              onClick={() => {
-                history.push('/signin')
+      <Box className={classes.box}>
+        <Container>
+          <Divider />
+          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+            <Box display="flex" alignItems="center">
+              <VerifiedUserRounded color="secondary" className={classes.icon} />
+              <Typography
+                className={classes.typography}
+                variant="h6"
+                color="primary"
+              >
+                登录
+              </Typography>
+              <Button
+                endIcon={<KeyboardArrowRightRounded />}
+                variant="contained"
+                color="secondary"
+                onClick={() => {
+                  history.push('/signin')
+                }}
+                size="small"
+              >
+                注册
+              </Button>
+            </Box>
+            <TextField
+              className={classes.textField}
+              label="ID"
+              fullWidth
+              variant="outlined"
+              onChange={(e) => {
+                setId(e.target.value)
               }}
-            >
-              注册
-            </Button>
-          </Box>
-          <TextField
-            className={classes.textField}
-            label="ID"
-            fullWidth
-            variant="outlined"
-            onChange={(e) => {
-              setId(e.target.value)
-            }}
-          />
-          <TextField
-            className={classes.textField}
-            label="密码"
-            fullWidth
-            variant="outlined"
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-          />
-          <Box display="flex" flexDirection="row-reverse">
-            <Button
-              className={classes.button}
-              focusRipple={false}
-              variant="contained"
-              color="primary"
-              endIcon={<KeyboardArrowRight />}
-              type="submit"
-            >
-              确定
-            </Button>
-          </Box>
-        </form>
-      </Container>
+            />
+            <TextField
+              className={classes.textField}
+              label="密码"
+              fullWidth
+              variant="outlined"
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
+            />
+            <Box display="flex" flexDirection="row-reverse">
+              <Button
+                className={classes.button}
+                focusRipple={false}
+                variant="contained"
+                color="primary"
+                endIcon={<KeyboardArrowRight />}
+                type="submit"
+                size="small"
+              >
+                确定
+              </Button>
+            </Box>
+          </form>
+        </Container>
+      </Box>
     </Box>
   )
 }

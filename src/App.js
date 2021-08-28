@@ -18,6 +18,8 @@ import { SignInPage } from './pages/signin'
 
 export const App = () => {
   const [login, setLogin] = useState(false)
+  const [user, setUser] = useState(null)
+
   return (
     <ThemeProvider theme={ltyTheme}>
       <Router>
@@ -30,14 +32,14 @@ export const App = () => {
             />
           </Route>
           <Route path="/login">
-            <LoginPage setLogin={setLogin} />
+            <LoginPage setLogin={setLogin} setUser={setUser} />
           </Route>
           <Route path="/signin">
             <SignInPage />
           </Route>
           <Route path={menuList[0].path}>
             {login ? (
-              <LTYLayout>
+              <LTYLayout user={user}>
                 <IndexPage />
               </LTYLayout>
             ) : (
@@ -50,7 +52,7 @@ export const App = () => {
           </Route>
           <Route path={menuList[1].path}>
             {login ? (
-              <LTYLayout>
+              <LTYLayout user={user}>
                 <InfoPage />
               </LTYLayout>
             ) : (
@@ -63,7 +65,7 @@ export const App = () => {
           </Route>
           <Route path={menuList[2].path}>
             {login ? (
-              <LTYLayout>
+              <LTYLayout user={user}>
                 <FeedbackPage />
               </LTYLayout>
             ) : (

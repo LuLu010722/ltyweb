@@ -12,11 +12,17 @@ import {
   List,
   ListItem,
   Container,
+  Button,
 } from '@material-ui/core'
 
 import { SideBar } from '../containers/SideBar'
 import { useState } from 'react'
-import { FormatListBulletedRounded } from '@material-ui/icons'
+import {
+  CloseRounded,
+  FormatListBulletedRounded,
+  KeyboardArrowDown,
+} from '@material-ui/icons'
+import { useHistory } from 'react-router'
 
 const useLTYLayoutStyles = makeStyles((theme) => ({
   root: {
@@ -45,29 +51,47 @@ const useLTYLayoutStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  popover: {
+  avatarPopover: {
     marginTop: theme.spacing(2),
   },
-  popoverContent: {
-    margin: theme.spacing(1),
+  userPopover: {
+    marginTop: theme.spacing(3),
+  },
+  usernameBox: {
+    display: 'flex',
+    cursor: 'pointer',
   },
 }))
 
-export const LTYLayout = ({ children }) => {
+export const LTYLayout = ({ children, user }) => {
   const classes = useLTYLayoutStyles()
+  const history = useHistory()
   const [sideBarExpand, setSideBarExpand] = useState(true)
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [userAnchorEl, setUserAnchorEl] = useState(null)
+  const [avatarAnchorEl, setAvatarAnchorEl] = useState(null)
 
   const handleAppBarIconClick = () => {
     setSideBarExpand(!sideBarExpand)
   }
 
   const handleAvatarClick = (e) => {
-    setAnchorEl(e.currentTarget)
+    setAvatarAnchorEl(e.currentTarget)
   }
 
   const handleAvatarClose = () => {
-    setAnchorEl(null)
+    setAvatarAnchorEl(null)
+  }
+
+  const handleUserClick = (e) => {
+    setUserAnchorEl(e.currentTarget)
+  }
+
+  const handleUserClose = () => {
+    setUserAnchorEl(null)
+  }
+
+  const handleLogout = () => {
+    history.push('/')
   }
 
   return (
@@ -83,16 +107,39 @@ export const LTYLayout = ({ children }) => {
           <Typography className={classes.appBarText}>
             欢迎来到我的个人主页
           </Typography>
-          <Typography>LuLu010722</Typography>
+          <Box className={classes.usernameBox} onClick={handleUserClick}>
+            <Typography>{user.username}</Typography>
+            <KeyboardArrowDown />
+          </Box>
+          <Popover
+            className={classes.userPopover}
+            open={!!userAnchorEl}
+            anchorEl={userAnchorEl}
+            onClose={handleUserClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <Box display="flex" flexDirection="column">
+              <Button startIcon={<CloseRounded />} onClick={handleLogout}>
+                退出
+              </Button>
+            </Box>
+          </Popover>
           <Avatar
             src="avatar.png"
             className={classes.avatar}
             onClick={handleAvatarClick}
           />
           <Popover
-            className={classes.popover}
-            open={!!anchorEl}
-            anchorEl={anchorEl}
+            className={classes.avatarPopover}
+            open={!!avatarAnchorEl}
+            anchorEl={avatarAnchorEl}
             onClose={handleAvatarClose}
             anchorOrigin={{
               vertical: 'bottom',
@@ -103,14 +150,10 @@ export const LTYLayout = ({ children }) => {
               horizontal: 'right',
             }}
           >
-            <Box
-              className={classes.popoverContent}
-              display="flex"
-              flexDirection="column"
-            >
-              <ListItem button>点赞</ListItem>
-              <ListItem button>收藏</ListItem>
-              <ListItem button>投币</ListItem>
+            <Box display="flex" flexDirection="column">
+              <Button>点赞</Button>
+              <Button>收藏</Button>
+              <Button>投币</Button>
             </Box>
           </Popover>
         </Toolbar>
