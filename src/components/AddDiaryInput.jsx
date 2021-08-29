@@ -2,6 +2,7 @@ import { Button, makeStyles } from '@material-ui/core'
 import { Box, TextField, Typography } from '@material-ui/core'
 import { KeyboardArrowRightRounded } from '@material-ui/icons'
 import { useState } from 'react'
+import Swal from 'sweetalert2'
 import { hostPath } from '../data/global'
 import { Divider } from './Divider'
 
@@ -17,15 +18,28 @@ const useStyles = makeStyles((theme) => ({
 export const AddDiaryInput = ({ refresh }) => {
   const classes = useStyles()
   const [diaryContent, setDiaryContent] = useState('')
+
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (diaryContent.trim() === '') {
+      Swal.fire({
+        icon: 'error',
+        title: '写点什么吧主人quq',
+      })
+      return
+    }
     fetch(hostPath + 'diarys', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ diaryContent }),
-    }).then(() => {
+      body: JSON.stringify({ diaryContent, date: new Date().getTime() }),
+    }).then(async () => {
+      await Swal.fire({
+        icon: 'success',
+        title: '恭喜主人完成了今天的工作呀quq',
+      })
       refresh()
     })
   }
