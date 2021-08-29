@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { Box } from '@material-ui/core'
-import { AddCircleRounded, KeyboardArrowRight } from '@material-ui/icons'
+import { AddCircleRounded, KeyboardArrowRightRounded } from '@material-ui/icons'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import Swal from 'sweetalert2'
@@ -145,7 +145,7 @@ export const SignInPage = () => {
                 focusRipple={false}
                 variant="contained"
                 color="primary"
-                endIcon={<KeyboardArrowRight />}
+                endIcon={<KeyboardArrowRightRounded />}
                 type="submit"
                 size="small"
               >

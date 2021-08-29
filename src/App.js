@@ -8,7 +8,7 @@ import { ThemeProvider } from '@material-ui/styles'
 
 import { ltyTheme } from './theme'
 import { IndexPage } from './pages'
-import { InfoPage } from './pages/info'
+import { DiaryPage } from './pages/diary'
 import { FeedbackPage } from './pages/feedback'
 import { LTYLayout } from './layouts/LTYLayout'
 import { menuList } from './data/global'
@@ -53,7 +53,7 @@ export const App = () => {
           <Route path={menuList[1].path}>
             {login ? (
               <LTYLayout user={user}>
-                <InfoPage />
+                <DiaryPage />
               </LTYLayout>
             ) : (
               <Redirect

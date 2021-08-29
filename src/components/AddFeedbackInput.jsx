@@ -8,7 +8,7 @@ import {
   Box,
   MenuItem,
 } from '@material-ui/core'
-import { KeyboardArrowRight } from '@material-ui/icons'
+import { KeyboardArrowRightRounded } from '@material-ui/icons'
 import Swal from 'sweetalert2'
 
 import { statusList, textList } from '../data/global'
@@ -148,7 +148,7 @@ export const AddFeedbackInput = ({ refresh }) => {
           minRows={3}
         />
         <Button
-          endIcon={<KeyboardArrowRight />}
+          endIcon={<KeyboardArrowRightRounded />}
           focusRipple={false}
           type="submit"
           variant="contained"

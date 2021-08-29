@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core'
 import { Box } from '@material-ui/core'
 import {
-  KeyboardArrowRight,
   KeyboardArrowRightRounded,
   VerifiedUserRounded,
 } from '@material-ui/icons'
@@ -138,7 +137,7 @@ export const LoginPage = ({ setLogin, setUser }) => {
                 focusRipple={false}
                 variant="contained"
                 color="primary"
-                endIcon={<KeyboardArrowRight />}
+                endIcon={<KeyboardArrowRightRounded />}
                 type="submit"
                 size="small"
               >
