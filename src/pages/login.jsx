@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     position: 'absolute',
-    backgroundColor: theme.palette.grey[500]
+    backgroundColor: theme.palette.grey[500],
   },
   box: {
     width: 400,

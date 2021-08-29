@@ -6,12 +6,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { Box } from '@material-ui/core'
-import {
-  AddCircleRounded,
-  KeyboardArrowRight,
-  KeyboardArrowRightRounded,
-  VerifiedUserRounded,
-} from '@material-ui/icons'
+import { AddCircleRounded, KeyboardArrowRight } from '@material-ui/icons'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import Swal from 'sweetalert2'

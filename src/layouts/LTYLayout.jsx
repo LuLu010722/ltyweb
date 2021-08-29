@@ -9,9 +9,6 @@ import {
   makeStyles,
   Avatar,
   IconButton,
-  List,
-  ListItem,
-  Container,
   Button,
 } from '@material-ui/core'
 
